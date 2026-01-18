@@ -23,10 +23,7 @@ namespace ApiCatalago.Controllers
 
         // GET: api/Produtos
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Produto>>> GetProdutos()
-        {
-            return await _context.Produtos.ToListAsync();
-        }
+        public async Task<ActionResult<IEnumerable<Produto>>> GetProdutos() => await _context.Produtos.ToListAsync();
 
         // GET: api/Produtos/5
         [HttpGet("{id}")]

@@ -25,7 +25,11 @@ namespace ApiCatalago.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Categoria>>> GetCategorias()
         {
-            return await _context.Categorias.ToListAsync();
+            if (_context.Categorias == null)
+            {
+                return NotFound();
+            }
+            return await _context.Categorias.Include(c => c.Produtos).ToListAsync();
         }
 
         // GET: api/Categorias/5
