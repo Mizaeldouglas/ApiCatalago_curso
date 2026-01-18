@@ -1,17 +1,24 @@
 ﻿using System.Collections.ObjectModel;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
-namespace ApiCatalago.Models
+namespace ApiCatalago.Models;
+
+[Table("Categorias")]
+public class Categoria
 {
-    public class Categoria
+    public Categoria()
     {
-        public Categoria()
-        {
-            Produtos = new Collection<Produto>();
-        }
-
-        public int Id { get; set; }
-        public string? Nome { get; set; }
-        public string? ImagemUrl { get; set; }
-        public ICollection<Produto>? Produtos { get; set; }
+        Produtos = new Collection<Produto>();
     }
+
+    [Key]
+    public int Id { get; set; }
+    [Required]
+    [StringLength(80)]
+    public string? Nome { get; set; }
+    [Required]
+    [StringLength(300)]
+    public string? ImagemUrl { get; set; }
+    public ICollection<Produto>? Produtos { get; set; }
 }
